@@ -1,0 +1,53 @@
+<!-- troca-troca.html -->
+<!DOCTYPE html>
+
+<!--Nessa solução, quem usa a instância da classe Passarinho nem sabe que o método voa usa por debaixo dos panos uma instância-->
+<!--de Aviao para funcionar. Veja que a composição tem a vantagem de podermos escolher quais métodos queremos reaproveitar,-->
+<!--diferente da herança que é tudo ou nada. Contudo, veja que com composição precisamos escrever um pouco mais, pois temos-->
+<!--que delegar as chamadas dos métodos voa de Passarinho para o voa de avião.-->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p class="info">Era uma vez...</p>
+<script>
+
+    class Aviao {
+
+        constructor(nome) {
+            this._nome = nome;
+        }
+
+        voa() {
+            alert(`${this._nome} está voando`);
+        }
+
+        ligaMotor() {
+            console.log('liga o motor');
+        }
+
+        fechaPortas() {
+            console.log('Portas sendo fechadas');
+        }
+    }
+
+    class Passarinho {
+
+        constructor(nome) {
+            this._nome = nome;
+            // guarda uma instância de avião
+            this._aviao = new Aviao(nome);
+        }
+
+        voa() {
+            // usa o método voa de Aviao
+            this._aviao.voa();
+        }
+    }
+
+</script>
+</body>
+</html>
